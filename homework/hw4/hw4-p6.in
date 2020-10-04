@@ -1,0 +1,53 @@
+% Saved by Prover9-Mace4 Version 0.5, December 2007.
+
+set(ignore_option_dependencies). % GUI handles dependencies
+
+if(Prover9). % Options for Prover9
+  assign(max_seconds, 10).
+  set(binary_resolution).
+  clear(print_initial_clauses).
+  clear(print_given).
+  assign(stats, none).
+end_if.
+
+if(Mace4).   % Options for Mace4
+  assign(max_seconds, 1).
+end_if.
+
+formulas(assumptions).
+
+% Someone who lives in Dreadbury Mansion killed Aunt Agatha.
+exists x (LivesIn(x,D) & Killed(x,A)).
+
+% Agatha, the butler, and Charles live in Dreadbury Mansion.
+LivesIn(A,D) & LivesIn(B,D) & LivesIn(C,D).
+-(x = A | x = B | x = C) -> -LivesIn(x,D).
+
+% A killer always hates his victim, and is never richer than his victim.
+Killed(x,y) -> (Hates(x,y) & -(RicherThan(x,y))).
+
+% Charles hates no one that Aunt Agatha hates.
+Hates(A,x) -> -Hates(C,x).
+
+% Agatha hates everyone except the butler.
+-(x = B) -> Hates(A,x).
+
+% The butler hates everyone - richer than Aunt Agatha.
+-RicherThan(x,A) -> Hates(B,x).
+
+% The butler hates everyone Aunt Agatha hates.
+Hates(A,x) -> Hates(B,x).
+
+% No one hates everyone.
+exists y -Hates(x,y).
+
+% Agatha is not the butler.
+- (A = B).
+
+end_of_list.
+
+formulas(goals).
+
+exists x ((x = A | x = C | x = B) & Killed(x,A)).
+
+end_of_list.
