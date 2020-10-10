@@ -1,0 +1,25 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Run by executing command:
+%
+%    $ prover9 -f hw5-p6-a.in
+
+set(binary_resolution).
+clear(print_initial_clauses).
+clear(print_kept).
+clear(print_given).
+assign(max_seconds,10).
+assign(stats,none).
+
+
+formulas(assumptions).
+ina0=inb0.
+(outa0 = ina0) & (outa1 = outa0 * ina0) & (outa2 = outa1 * ina0).
+outb0 = (inb0 * inb0) * inb0.
+
+end_of_list.
+
+formulas(goals).
+
+outa2 = outb0.
+
+end_of_list.

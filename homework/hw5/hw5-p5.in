@@ -1,0 +1,31 @@
+% run by executing command:
+%
+%    % compile with command:$ mace4 -c -f hw5-p5.in 
+%
+
+
+set(binary_resolution).
+clear(print_initial_clauses).
+clear(print_kept).
+clear(print_given).
+assign(max_seconds,20).
+assign(stats,none).
+
+
+formulas(assumptions).
+% M(x, y) refers to left multiplication on x
+
+M(x, e) = x & M(e, x) = x.
+
+exists y (M(y, x) = e & M(x, y) = e).
+
+M(z, M(y, x) ) = M( M(z, y) , x).
+
+
+end_of_list.
+
+formulas(goals).
+
+(M(x, y) = M(y, x)).
+
+end_of_list.

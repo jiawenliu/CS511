@@ -1,0 +1,34 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Run by executing command:
+%
+%    $ mace4 -c -f hw5-p6-b.in
+
+set(binary_resolution).
+clear(print_initial_clauses).
+clear(print_kept).
+clear(print_given).
+assign(max_seconds,20).
+assign(stats,none).
+
+formulas(assumptions).
+
+in_a0 = in_b0.
+
+% define \phi_a
+
+(out_a0 = in_a0) & (out_a1 = out_a0*in_a0) & ( out_a2 = out_a1*in_a0 ) & ( out_a3 = out_a2*in_a0 ).
+
+% define \phi_b
+
+out_b0 = (in_b0 * in_b0) * in_b0.
+
+end_of_list.
+
+
+
+formulas(goals).
+
+out_a3 = out_b0.
+
+
+end_of_list.
