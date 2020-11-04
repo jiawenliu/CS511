@@ -1,4 +1,6 @@
 """
+This solution is credited to Glenn Liem, originally found in
+https://github.com/gxavier38/CS511/blob/master/HW7/Question%205.py
 run the code withe the command: 
 python hw7-p5.py [inputfilename]
 for example: python hw7-p5.py input.txt
