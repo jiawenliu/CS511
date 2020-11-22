@@ -1,0 +1,17 @@
+% run with command:
+%
+% mace4 -c -f hw10-p5-1.in
+%
+%psi -> psi' is invalid
+
+assign(max_seconds, 100). % search up 20 seconds
+
+formulas(assumptions).
+%% Phi'
+(exists y R(x,y)) & (R(x,y) & R(x,z) -> (y = z)) -> (exists v exists w exists y ((v != w) & R(v,y) & R(w,y))).
+end_of_list.
+
+formulas(goals).
+% Phi
+(-R(x,c)) & (exists y R(x,y)) -> (exists v exists w exists y ( (v != w) & R(v,y) & R(w,y)) ).
+end_of_list.
