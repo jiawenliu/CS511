@@ -3,6 +3,9 @@
 The code is credited to Zichen Zhu
 Originally found in:
 https://github.com/littlepig2013/CS511-Formal-Method/blob/master/hw10/network-builder.py
+However, this code is not completely correct. 
+The resulting graph should be a tree by running the MaxSAT incrementally. 
+While this code runs the MaxSAT only once, resulting a forest instead of a tree.
 """
 
 import ast
