@@ -1,0 +1,39 @@
+% run with command:
+%
+% mace4 -c -f hw10-p5-1.in
+%
+set(ignore_option_dependencies). % GUI handles dependencies
+
+if(Prover9). % Options for Prover9
+  assign(max_seconds, 60).
+end_if.
+
+if(Mace4).   % Options for Mace4
+  assign(max_seconds, 60).
+end_if.
+
+formulas(assumptions).
+
+% Partially ordered set
+L(x,x).
+L(x,y) & L(y,x) -> x = y.
+L(x,y) & L(y,z) -> L(x,z).
+
+% Lattice
+L(B,x).
+L(x,T).
+L(LUB(x,y),z) <-> L(x,z) & L(y,z). 
+L(z,GLB(x,y)) <-> L(z,x) & L(z,y).
+
+% Distributive
+GLB(x,LUB(y,z)) = LUB(GLB(x,y), GLB(x,z)).
+LUB(x,GLB(y,z)) = GLB(LUB(x,y), LUB(x,z)).
+
+end_of_list.
+
+formulas(goals).
+
+% Has complement
+exists y (LUB(x,y) = T & GLB(x,y) = B).
+
+end_of_list.
